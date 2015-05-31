@@ -28,7 +28,7 @@ This prototype project consists of a simple spring boot REST service. To build t
 
 ### Dockerfile
 	
-At this point you will have a complete runnable Spring Boot jar file in the projects target directory. If you take a look at the src/main/docker/Dockerfile contained in the project, you will notice that this artifact is referenced in an `ADD` command. This command instructs docker to add the jar file to the container image.
+At this point you will have a complete runnable Spring Boot jar file in the project's target directory. If you take a look at the [src/main/docker/Dockerfile](https://github.com/markramach/spring-boot-prototype-docker/blob/master/src/main/docker/Dockerfile) contained in the project, you will notice that this artifact is referenced in an `ADD` command. This command instructs docker to add the jar file to the container image.
 
 	FROM java:8
 	ADD spring-boot-prototype-docker.jar spring-boot-prototype-docker.jar
@@ -40,7 +40,7 @@ The final `ENTRY` command indicates that the image should run the `java -jar` co
 
 For more information on Dockerfile commands see the reference documentation [here](http://docs.docker.com/reference/builder/).
 
-### Build The Image
+### Build the Image
 	
 This project has the Maven Docker Plugin preconfigured in the pom.xml file. To build the docker image simply run the following command:
 
@@ -76,15 +76,15 @@ The command should produce output similar to the following:
 	[INFO] Final Memory: 22M/238M
 	[INFO] ------------------------------------------------------------------------
 	
-If you run the `docker images` command you should see that your image has been created on your local system.
+If you run the `docker images` command, you should see that your image has been created on your local system.
 
 	Marks-MacBook-Pro:spring-boot-prototype-docker mramach$ docker images
 	REPOSITORY                                                  TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
 	markramach/spring-boot-prototype-docker                     latest              350c05d529c3        About a minute ago   830.4 MB	
 	
-### Tag The Image
+### Tag the Image
 
-Now that the image has been created, we should tag the image to indicate the version of the Spring Boot artifact that it contains. The prototype project has been configured to use the project version then tagging. To create the tag run the following command:
+Now that the image has been created, we should tag the image to indicate the version of the Spring Boot artifact that it contains. The prototype project has been configured to use the project version when tagging. To create the tag run the following command:
 
 	mvn docker:tag
 	
@@ -114,7 +114,7 @@ Running the `docker images` command should now produce the following output.
 	
 Notice that both tags are pointed at the same image id.
 
-### Push The Image
+### Push the Image
 
 To make the image available outside of your local system, you need to push the image to a valid Docker Registry. This project pushes the images to a public repository provided by Docker. However, you could create a private repository on Docker. Or, host your own private registry. There are actually already several Docker private registry images available to choose from on [Docker Hub](https://registry.hub.docker.com/).
 
@@ -161,7 +161,7 @@ At this point you should be able to browse [Docker Registry](https://registry.hu
 
 ### Start A Container
 
-Now that the images have been pushed to the registry and the tags have been created, we can execute a `docker run` command and start the container from any host that has Docker installed. A prototype project container can be started using the following command:
+Now that the images have been pushed to the registry and the tags have been created, we can execute a `docker run` command and start the container from any host that has Docker installed. A prototype project container can be created and started using the following command:
 
 	docker run -ti --name spring-boot-prototype-docker -p 8080:8080 markramach/spring-boot-prototype-docker
 
