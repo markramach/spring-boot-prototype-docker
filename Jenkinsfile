@@ -9,5 +9,10 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+        stage('Sonar Analysis') {
+            withSonarQubeEnv('sonar') {
+              sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+            }
+        }
     }
 }
