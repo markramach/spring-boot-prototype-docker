@@ -1,8 +1,13 @@
-node{
-  stage ('Build') {
-    git url: 'https://github.com/markramach/spring-boot-prototype-docker'
-    maven(maven: 'maven') {
-      sh "mvn clean install"
-    } 
-  }
+pipeline {
+    agent any
+    tools {
+        maven 'maven' 
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+    }
 }
