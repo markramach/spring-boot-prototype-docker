@@ -16,5 +16,10 @@ pipeline {
                 }
             }
         }
+        stage('Docker') {
+            steps {
+                sh 'mvn docker:build'
+            }
+        }
     }
 }
